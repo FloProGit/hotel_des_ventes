@@ -31,9 +31,13 @@ class Product
     #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'product_id')]
     private Collection $Categorys;
 
+    #[ORM\OneToMany(mappedBy: 'product_id', targetEntity: Visual::class, orphanRemoval: true)]
+    private Collection $visuals;
+
     public function __construct()
     {
         $this->Categorys = new ArrayCollection();
+        $this->visuals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +115,36 @@ class Product
     {
         if ($this->Categorys->removeElement($category)) {
             $category->removeProductId($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Visual>
+     */
+    public function getVisuals(): Collection
+    {
+        return $this->visuals;
+    }
+
+    public function addVisual(Visual $visual): self
+    {
+        if (!$this->visuals->contains($visual)) {
+            $this->visuals->add($visual);
+            $visual->setProductId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVisual(Visual $visual): self
+    {
+        if ($this->visuals->removeElement($visual)) {
+            // set the owning side to null (unless already changed)
+            if ($visual->getProductId() === $this) {
+                $visual->setProductId(null);
+            }
         }
 
         return $this;
