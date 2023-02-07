@@ -40,9 +40,16 @@ class User
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Address::class, orphanRemoval: true)]
     private Collection $addresses;
 
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Order::class, orphanRemoval: true)]
+    private Collection $orders;
+
+    #[ORM\OneToOne(mappedBy: 'user_id', cascade: ['persist', 'remove'])]
+    private ?Cart $cart = null;
+
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,6 +167,53 @@ class User
                 $address->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUserId() === $this) {
+                $order->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCart(): ?Cart
+    {
+        return $this->cart;
+    }
+
+    public function setCart(Cart $cart): self
+    {
+        // set the owning side of the relation if necessary
+        if ($cart->getUserId() !== $this) {
+            $cart->setUserId($this);
+        }
+
+        $this->cart = $cart;
 
         return $this;
     }
