@@ -23,7 +23,6 @@ product_list:
 product_new:
     path: /products/new
     controller: App\Controller\ProductController::create
-    methods: GET
 
 
 product_update:
