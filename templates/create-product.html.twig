@@ -1,16 +1,17 @@
+
 <div class="container mx-auto">
     <div class="flex justify-center">
-        <form action="" method="get" class="">
+        <form action="{{ app.request.uri }}" method="post" class="">
             <div class="my-2">
                 <label for="name-product">Nom du produit </label>
                 <input type="text" name="name-product" id="name-product" required>
             </div>
             <div class="my-3">
-                <label for="description-product">prix </label>
+                <label for="prix-product">description</label>
                 <input name="description-product" id="description-product" required>
             </div>
             <div class="my-3">
-                <label for="prix-product">description</label>
+                <label for="description-product">prix </label>
                 <input name="prix-product" id="prix-product" required>
             </div>
             <div class="my-3">
