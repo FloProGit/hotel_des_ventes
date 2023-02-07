@@ -18,7 +18,7 @@ class Cart
 
     #[ORM\OneToOne(inversedBy: 'cart', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user_id = null;
+    private ?user $user = null;
 
     public function getId(): ?int
     {
@@ -37,14 +37,14 @@ class Cart
         return $this;
     }
 
-    public function getUserId(): ?user
+    public function getUser(): ?user
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(user $user_id): self
+    public function setUser(user $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

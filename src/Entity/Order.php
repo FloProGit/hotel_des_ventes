@@ -7,7 +7,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ORM\Table(name: '`order`')]
 class Order
 {
     #[ORM\Id]
@@ -32,11 +31,11 @@ class Order
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user_id = null;
+    private ?user $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?deliveryCompany $delivery_company_id = null;
+    private ?deliveryCompany $delivery_company = null;
 
     public function getId(): ?int
     {
@@ -105,24 +104,24 @@ class Order
 
     public function getUserId(): ?user
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?user $user_id): self
+    public function setUserId(?user $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getDeliveryCompanyId(): ?deliveryCompany
+    public function getDeliveryCompany(): ?deliveryCompany
     {
-        return $this->delivery_company_id;
+        return $this->delivery_company;
     }
 
-    public function setDeliveryCompanyId(?deliveryCompany $delivery_company_id): self
+    public function setDeliveryCompany(?deliveryCompany $delivery_company): self
     {
-        $this->delivery_company_id = $delivery_company_id;
+        $this->delivery_company = $delivery_company;
 
         return $this;
     }

@@ -37,13 +37,13 @@ class User
     #[ORM\Column(length: 15)]
     private ?string $phone_number = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Address::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class, orphanRemoval: true)]
     private Collection $addresses;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Order::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class, orphanRemoval: true)]
     private Collection $orders;
 
-    #[ORM\OneToOne(mappedBy: 'user_id', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Cart $cart = null;
 
     public function __construct()
@@ -209,8 +209,8 @@ class User
     public function setCart(Cart $cart): self
     {
         // set the owning side of the relation if necessary
-        if ($cart->getUserId() !== $this) {
-            $cart->setUserId($this);
+        if ($cart->getUser() !== $this) {
+            $cart->setUser($this);
         }
 
         $this->cart = $cart;

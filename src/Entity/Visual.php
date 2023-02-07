@@ -18,7 +18,7 @@ class Visual
 
     #[ORM\ManyToOne(inversedBy: 'visuals')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?product $product_id = null;
+    private ?product $product = null;
 
     public function getId(): ?int
     {
@@ -37,14 +37,14 @@ class Visual
         return $this;
     }
 
-    public function getProductId(): ?product
+    public function getProduct(): ?product
     {
-        return $this->product_id;
+        return $this->product;
     }
 
-    public function setProductId(?product $product_id): self
+    public function setProduct(?product $product): self
     {
-        $this->product_id = $product_id;
+        $this->product = $product;
 
         return $this;
     }

@@ -28,15 +28,15 @@ class Product
     #[ORM\Column]
     private ?int $bar_code = null;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'product_id')]
-    private Collection $Categorys;
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'product')]
+    private Collection $Categories;
 
-    #[ORM\OneToMany(mappedBy: 'product_id', targetEntity: Visual::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Visual::class, orphanRemoval: true)]
     private Collection $visuals;
 
     public function __construct()
     {
-        $this->Categorys = new ArrayCollection();
+        $this->Categories = new ArrayCollection();
         $this->visuals = new ArrayCollection();
     }
 
@@ -96,16 +96,16 @@ class Product
     /**
      * @return Collection<int, Category>
      */
-    public function getCategorys(): Collection
+    public function getCategories(): Collection
     {
-        return $this->Categorys;
+        return $this->Categories;
     }
 
     public function addCategory(Category $category): self
     {
-        if (!$this->Categorys->contains($category)) {
-            $this->Categorys->add($category);
-            $category->addProductId($this);
+        if (!$this->Categories->contains($category)) {
+            $this->Categories->add($category);
+            $category->addProduct($this);
         }
 
         return $this;
@@ -113,8 +113,8 @@ class Product
 
     public function removeCategory(Category $category): self
     {
-        if ($this->Categorys->removeElement($category)) {
-            $category->removeProductId($this);
+        if ($this->Categories->removeElement($category)) {
+            $category->removeProduct($this);
         }
 
         return $this;
