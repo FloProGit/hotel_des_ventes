@@ -153,7 +153,7 @@ class User
     {
         if (!$this->addresses->contains($address)) {
             $this->addresses->add($address);
-            $address->setUserId($this);
+            $address->setUser($this);
         }
 
         return $this;
@@ -163,8 +163,8 @@ class User
     {
         if ($this->addresses->removeElement($address)) {
             // set the owning side to null (unless already changed)
-            if ($address->getUserId() === $this) {
-                $address->setUserId(null);
+            if ($address->getUser() === $this) {
+                $address->setUser(null);
             }
         }
 
@@ -183,7 +183,7 @@ class User
     {
         if (!$this->orders->contains($order)) {
             $this->orders->add($order);
-            $order->setUserId($this);
+            $order->setUser($this);
         }
 
         return $this;
@@ -193,8 +193,8 @@ class User
     {
         if ($this->orders->removeElement($order)) {
             // set the owning side to null (unless already changed)
-            if ($order->getUserId() === $this) {
-                $order->setUserId(null);
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
             }
         }
 

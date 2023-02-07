@@ -132,7 +132,7 @@ class Product
     {
         if (!$this->visuals->contains($visual)) {
             $this->visuals->add($visual);
-            $visual->setProductId($this);
+            $visual->setProduct($this);
         }
 
         return $this;
@@ -142,8 +142,8 @@ class Product
     {
         if ($this->visuals->removeElement($visual)) {
             // set the owning side to null (unless already changed)
-            if ($visual->getProductId() === $this) {
-                $visual->setProductId(null);
+            if ($visual->getProduct() === $this) {
+                $visual->setProduct(null);
             }
         }
 
