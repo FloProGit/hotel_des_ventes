@@ -8,11 +8,10 @@
     }
 }
 
-
 :root {
-    --primary-color: #786EEF;
-    --text-color: white;
+    --bg-button-color: #blue;
 }
+
 
 body {
     background-color: lightgray;
