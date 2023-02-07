@@ -102,12 +102,12 @@ class Order
         return $this;
     }
 
-    public function getUserId(): ?user
+    public function getUser(): ?user
     {
         return $this->user;
     }
 
-    public function setUserId(?user $user): self
+    public function setUser(?user $user): self
     {
         $this->user = $user;
 
