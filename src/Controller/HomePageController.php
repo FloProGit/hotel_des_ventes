@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomePageController extends AbstractController
 {
-    public function index():Response
+    public function show():Response
     {
         return $this->render('base.html.twig');
     }
