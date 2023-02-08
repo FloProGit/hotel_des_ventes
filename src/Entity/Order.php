@@ -35,7 +35,7 @@ class Order
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?deliveryCompany $delivery_company = null;
+    private ?DeliveryCompany $delivery_company = null;
 
     public function getId(): ?int
     {
@@ -114,12 +114,12 @@ class Order
         return $this;
     }
 
-    public function getDeliveryCompany(): ?deliveryCompany
+    public function getDeliveryCompany(): ?DeliveryCompany
     {
         return $this->delivery_company;
     }
 
-    public function setDeliveryCompany(?deliveryCompany $delivery_company): self
+    public function setDeliveryCompany(?DeliveryCompany $delivery_company): self
     {
         $this->delivery_company = $delivery_company;
 

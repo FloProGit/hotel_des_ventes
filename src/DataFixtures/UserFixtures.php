@@ -22,14 +22,9 @@ class UserFixtures extends Fixture
             $user = new User;
             $genre = ["male","female","other"];
             $roles = ["user_Admin","user_Client"];
-            $user->setname($faker->lastName())
-                ->setFirstName($faker->firstName())
-                ->setGenre($genre[rand(0,2)])
-                ->setBirthday($faker->dateTimeThisCentury('-13 years'))
-                ->setPhoneNumber("0000000000")
-                ->setMail($faker->email())
-                ->setPassword($this->hasher->hashPassword($user, '123456'))
-                ->setRoles($roles[rand(0,1)]);
+            $user->setEmail($faker->email())
+                ->setPassword($this->hasher->hashPassword($user, '123456'));
+                // ->setRoles([$roles[rand(0,1)]]);
             $this->addReference('user' . $i, $user);
 
             $manager->persist($user);
