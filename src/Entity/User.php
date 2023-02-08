@@ -47,6 +47,9 @@ class User implements PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Cart $cart = null;
 
+    #[ORM\Column(length: 30)]
+    private ?string $roles = null;
+
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
@@ -215,6 +218,18 @@ class User implements PasswordAuthenticatedUserInterface
         }
 
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function getRoles(): ?string
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(string $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
