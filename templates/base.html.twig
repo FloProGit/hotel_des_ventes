@@ -15,14 +15,14 @@
     {% endblock %}
 </head>
 <body>
-{#        {% block body %} #}
-{#            <!-- Using utilities: --> #}
-{#            <button class="hover:text-red-700 bg-blue-500  text-white font-bold py-2 px-4 rounded hover:bg-blue-700  "> #}
-{#                Button #}
-{#            </button> #}
-{#            <h1 class="text-3xl font-bold underline"> #}
-{#                Hello world! #}
-{#            </h1> #}
-{#        {% endblock %} #}
+    {% block body %}
+    <div class="grid grid-cols-4">
+        {% for i in 0..10 %}
+        <div>
+        {% include 'item-product.html.twig' %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
 </body>
 </html>
