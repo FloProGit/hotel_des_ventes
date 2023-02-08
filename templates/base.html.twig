@@ -17,18 +17,28 @@
 <body>
 
 {% block header %}
-    <header class="bg-[color:var(--primary-color)] text-[color:var(--text-color)]">
-        <div class="flex grid-cols-4 gap-4 justify-between mx-3">
-            <div>
-                <p>git com</p>
+    <header class="sticky flex justify-center top-0 bg-[color:var(--primary-color)] text-[color:var(--text-color)]">
+        <div class="container flex grid-cols-4 gap-4 justify-between py-5">
+            <div class="w-full">
+                <a href="#">Categorie</a>
             </div>
 
-            <div>
-                <p>test</p>
+            <div class="w-full flex justify-center">
+                <a href="#">
+                    <img class=""
+                        src="https://picsum.photos/30/30"
+                        alt="logo du site">
+                </a>
             </div>
 
-            <div>
-                <p>test</p>
+            <div class="w-full flex flex-row">
+                <img class="pr-5"
+                     src="https://picsum.photos/30/30"
+                     alt="Rechercher">
+                <input class="text-black pl-1" type="text" id="search" name="search">
+                <img class="pl-5"
+                     src="https://picsum.photos/30/30"
+                     alt="Utilisateurs">
             </div>
         </div>
     </header>
