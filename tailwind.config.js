@@ -8,8 +8,8 @@ module.exports = {
         extend: {
             colors: {
                 "bg-button-color": "var(--bg-button-color)",
-            },
-        },
+                },
+                },
         container: {
             center: true,
             padding: {
