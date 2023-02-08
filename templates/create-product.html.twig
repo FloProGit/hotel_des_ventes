@@ -1,23 +1,63 @@
-
 <div class="container mx-auto">
-    <div class="flex justify-center">
-        <form action="{{ app.request.uri }}" method="post" class="">
-            <div class="my-2">
-                <label for="name-product">Nom du produit </label>
-                <input type="text" name="name-product" id="name-product" required>
+    <div class="flex justify-center text-center">
+        <form action="" method="get" class="">
+
+            <div class="my-3 flex flex-col justify-center">
+                <label class="mb-2" for="img-product">Image produit :</label>
+                <div><label for="upload"><span id="preview"></span></label></div>
+                <input type="file" class="m-auto mt-3 pl-2" onchange="handleFiles(files)" id="img-product"  name="img-product" accept="image/png, image/jpeg">
+
             </div>
-            <div class="my-3">
-                <label for="prix-product">description</label>
-                <input name="description-product" id="description-product" required>
+
+            <div class="my-3 flex flex-col">
+                <label class="mb-1" for="name-product">Nom :</label>
+                <input class="border-solid border-2 border-black pl-2" name="name-product" id="name-product" required>
             </div>
-            <div class="my-3">
-                <label for="description-product">prix </label>
-                <input name="prix-product" id="prix-product" required>
+
+            <div class="my-3 flex flex-col">
+                <label class="mb-1" for="description-product">Description :</label>
+                <textarea class="border-solid border-2 border-black pl-2" id="description-product" name="description-product"
+                          rows="3" required></textarea>
             </div>
-            <div class="my-3">
-                <input class="bg-[color:var(--bg-button-color)] px-5 py-3" type="submit" value="Créer produit!">
+
+            <div class="my-3 flex flex-col">
+                <label class="mb-1" for="prix-product">Prix :</label>
+                <input class="border-solid border-2 border-black pl-2" name="prix-product" id="prix-product" required>
+            </div>
+
+            <div class="mt-8">
+                <input class="w-full bg-[color:var(--bg-button-color)] text-white rounded-3xl py-3" type="submit" value="S'inscrire!">
             </div>
 
         </form>
     </div>
 </div>
+
+<script>
+    function handleFiles(files) {
+        var imageType = /^image\//;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (!imageType.test(file.type))
+                alert("veuillez sélectionner une image");
+            }else{
+                if(i == 0){
+                    preview.innerHTML = '';
+                }
+                var img = document.createElement("img");
+                img.classList.add("obj");
+                img.file = file;
+                preview.appendChild(img);
+                var reader = new FileReader();
+                reader.onload = ( function(aImg) {
+                    return function(e) {
+                        aImg.src = e.target.result;
+                    };
+                })(img);
+
+                reader.readAsDataURL(file);
+            }
+
+        }
+    }
+</script>
