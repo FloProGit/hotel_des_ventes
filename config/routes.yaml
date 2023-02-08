@@ -7,4 +7,25 @@ controllers:
 home_page:
     path: /
     # the controller value has the format 'controller_class::method_name'
-    controller: App\Controller\HomePageController::index
+    controller: App\Controller\HomePageController::show
+
+
+product_id:
+    path: /product/{id}
+    controller: App\Controller\ProductController::show
+    methods: GET
+
+product_list:
+    path: /products
+    controller: App\Controller\ProductController::showList
+    methods: GET
+
+product_new:
+    path: /products/new
+    controller: App\Controller\ProductController::create
+
+
+product_update:
+    path: /products/update/{id}
+    controller: App\Controller\ProductController::update
+    methods: GET

@@ -7,19 +7,17 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                "primary-color": "var(--primary-color)",
-                "secondary-color": "var(--secondary-color)",
-                "text-color": "var(--text-color)"
-            },
-            container: {
-                padding: {
-                    DEFAULT: '1rem',
-                    sm: '2rem',
-                    lg: '4rem',
-                    xl: '5rem',
-                    '2xl': '6rem',
+                "bg-button-color": "var(--bg-button-color)",
                 },
-                
+                },
+        container: {
+            center: true,
+            padding: {
+                DEFAULT: '1rem',
+                sm: '2rem',
+                lg: '4rem',
+                xl: '5rem',
+                '2xl': '6rem',
             },
         },
     },
