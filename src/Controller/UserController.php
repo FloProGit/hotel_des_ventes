@@ -10,12 +10,13 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserController extends AbstractController
 {
 
-    public function addProductToCart(Request $request,ManagerRegistry  $doctrine)
+    public function addProductToCart(Request $request,ManagerRegistry  $doctrine):Response
     {
         if(!$this->getUser())
         {
@@ -43,11 +44,11 @@ class UserController extends AbstractController
 
         $entityManager->flush();
 
-        dd($this->getUser());
+        return $this->redirectToRoute('product_id',["id"=>$productId]);
 
     }
 
-    public function removeProductToCart(Request $request,ManagerRegistry  $doctrine)
+    public function removeProductToCart(Request $request,ManagerRegistry  $doctrine):Response
     {
         if(!$this->getUser())
         {
@@ -72,6 +73,8 @@ class UserController extends AbstractController
         $userRep->setCart($currentCart);
 
         $entityManager->flush();
+
+        return $this->redirect($request->getReferer());
 
     }
 }
