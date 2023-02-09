@@ -23,8 +23,7 @@ class UserFixtures extends Fixture
             $genre = ["male","female","other"];
             $roles = ["user_Admin","user_Client"];
             $user->setEmail($faker->email())
-                ->setPassword($this->hasher->hashPassword($user, '123456'))
-                ->setFirstName($faker->firstName());
+                ->setPassword($this->hasher->hashPassword($user, '123456'));
                 // ->setRoles([$roles[rand(0,1)]]);
             $this->addReference('user' . $i, $user);
 
