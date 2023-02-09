@@ -1,47 +1,30 @@
-<div class="container mx-auto">
-    <div class="flex justify-center text-center">
-        <form action="" method="get" class="">
+{% extends "base.html.twig" %}
+{% block body %}
 
-            <div class="my-3 flex flex-col">
-                <label class="mb-1" for="name-inscription">Nom :</label>
-                <input class="border-solid border-2 border-black pl-2" name="name-inscription" id="name-inscription" required>
-            </div>
+<div class="container mx-auto">
+    
+    <div class="flex justify-center text-center">
+        {{ form_start(registrationForm) }}
+
 
             <div class="my-3 flex flex-col">
                 <label class="mb-1" for="firstname-inscription">Prénom :</label>
-                <input class="border-solid border-2 border-black pl-2" name="firstname-inscription" id="firstname-inscription" required>
-            </div>
-
-            <div class="my-3 flex flex-col">
-                <label class="mb-1" for="gender-inscription">Genre :</label>
-                <input class="border-solid border-2 border-black pl-2" name="gender-inscription" id="gender-inscription" required>
-            </div>
-
-            <div class="my-3 flex flex-col">
-                <label class="mb-1" for="birthday-inscription">Date de naissance :</label>
-                <input type="date" class="border-solid border-2 border-black pl-2" name="birthday-inscription" id="birthday-inscription" required>
-            </div>
-
-            <div class="my-3 flex flex-col">
-                <label class="mb-1" for="phone-inscription">Téléphone :</label>
-                <input class="border-solid border-2 border-black pl-2" name="phone-inscription" id="phone-inscription" required>
-            </div>
-
-            <div class="my-2 flex flex-col">
-                <label class="mb-1" for="mobile-inscription">Mobile :</label>
-                <input class="border-solid border-2 border-black pl-2" type="text" name="mobile-inscription" id="mobile-inscription" required>
+                {{ form_widget(registrationForm.firstName, {'attr': {'class': 'border-solid border-2 border-black pl-2'}})}}
+                {# <input class="border-solid border-2 border-black pl-2" name="firstname-inscription" id="firstname-inscription" required> #}
             </div>
 
 
             <div class="my-3 flex flex-col">
                 <label class="mb-1" for="mail-inscription">E-mail :</label>
-                <input type="email" class="border-solid border-2 border-black pl-2" name="description-inscription" id="mail-inscription" required>
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'border-solid border-2 border-black pl-2'}}) }}
+                {# <input type="email" class="border-solid border-2 border-black pl-2" name="description-inscription" id="mail-inscription" required> #}
             </div>
 
 
             <div class="my-3 flex flex-col">
                 <label class="mb-1" for="password-inscription">Mot de passe :</label>
-                <input class="border-solid border-2 border-black pl-2" name="password-inscription" id="password-inscription" required>
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'border-solid border-2 border-black pl-2'}})}}
+                {# <input class="border-solid border-2 border-black pl-2" name="password-inscription" id="password-inscription" required> #}
             </div>
 
 
@@ -49,6 +32,8 @@
                 <input class="w-full bg-[color:var(--bg-button-color)] rounded-3xl py-3" type="submit" value="S'inscrire!">
             </div>
 
-        </form>
+            {{ form_end(registrationForm) }}
     </div>
 </div>
+
+{% endblock %}
