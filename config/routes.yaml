@@ -39,3 +39,8 @@ product_Remove_to_cart:
     path: /products/remove_to_cart/{id}
     controller: App\Controller\UserController::removeProductToCart
     methods: GET
+
+get_payment:
+    path: /payment
+    controller: App\Controller\PaymentController::getPayment
+    methods: GET
