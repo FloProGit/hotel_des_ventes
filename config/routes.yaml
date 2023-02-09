@@ -29,3 +29,13 @@ product_update:
     path: /products/update/{id}
     controller: App\Controller\ProductController::update
     methods: GET
+
+product_add_to_cart:
+    path: /products/add_to_cart/{id}
+    controller: App\Controller\UserController::addProductToCart
+    methods: GET
+
+product_Remove_to_cart:
+    path: /products/remove_to_cart/{id}
+    controller: App\Controller\UserController::removeProductToCart
+    methods: GET
