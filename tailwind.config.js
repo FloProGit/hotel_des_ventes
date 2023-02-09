@@ -7,9 +7,11 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                "primary-color": "var(--primary-color)",
+                "text-color": "var(--text-color)",
                 "bg-button-color": "var(--bg-button-color)",
-            },
-        },
+                },
+                },
         container: {
             center: true,
             padding: {
