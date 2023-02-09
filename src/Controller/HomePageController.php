@@ -10,6 +10,6 @@ class HomePageController extends AbstractController
 {
     public function show(): Response
     {
-        return $this->render('base.html.twig', ['name' => 'test', 'description' => 'testtest', 'price_excl_taxe' => '123', 'visuals' => 'https=>//picsum.photos/200/300']);
+        return $this->render('base.html.twig', ['id' => 2, 'name' => 'test', 'description' => 'testtest', 'price_excl_taxe' => 123, 'visuals' => 'https=>//picsum.photos/200/300']);
     }
 }

@@ -14,14 +14,17 @@ class ProductController extends AbstractController
     {
     }
 
-    public function show(Request $request): Response
+    public function show(Request $request, ProductRepository $repository): Response
     {
-        return $this->render('base.html.twig');
+        $productId = str_replace('/product/', '', $request->getPathInfo());
+        $product = $repository->find($productId);
+        return $this->render('show-product.html.twig', ['product' => $product]);
     }
 
-    public function showList(Request $request): Response
+    public function showList(Request $request, ProductRepository $repository): Response
     {
-        return $this->render('base.html.twig');
+        $products = $repository->findAll();
+        return $this->render('list-product.html.twig', ['products' => $products]);
     }
 
     public function create(Request $request): Response
