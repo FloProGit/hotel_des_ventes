@@ -1,18 +1,69 @@
-<div class="container flex justify-center">
-    <div class="columns-2">
-        <div>
-            <img class="w-full" src="https://picsum.photos/300/300" alt="{{name}}">
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Ajouter au panier</button>
-        </div>
-        <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2 text-end">{{ name }}</div>
-            <p class="text-gray-700 text-base">
-            {{ description }}
-            </p>
-            <div class="px-6 pt-4 pb-2">
-                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-auto mb-2">#category</span>
-            </div>
-            <p class="text-green-600 success text-end">{{ price_excl_taxe * 1.2 }} € TTC</p>
-        </div>
-    </div>
-</div>
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1 class="border-b-2 border-black mb-6 w-1/4 text-end">Article
+		{{product.barcode}}</h1>
+	<div class="container flex justify-center p-2">
+		<div class="grid grid-cols-2 items-start">
+			<div class="col-span-2 md:col-span-1 order-2 md:order-1 text-center">
+				<img class="w-full mb-6 rounded-2xl" src="https://picsum.photos/300/300" alt="{{product.name}}">
+				<div class="flex gap-4 overflow-hidden flex-center">
+					<img class="w-3/6 mb-6 rounded-2xl" src="https://picsum.photos/200/300" alt="{{product.name}}">
+					<img class="w-3/6 mb-6 rounded-2xl" src="https://picsum.photos/300/200" alt="{{product.name}}">
+				</div>
+			</div>
+			<div class="col-span-2 md:col-span-1 px-6 py-4 order-1 md:order-2">
+				<div class="flex">
+					<div class="font-bold text-xl mb-2 md:text-start text-center w-3/4">{{ product.name }}</div>
+					<p class="text-xl text-green-600 success mb-6 text-center md:text-end w-1/4">{{ product.priceexcltaxe * 1.2 }}
+						€ TTC</p>
+				</div>
+				<div class="w-full mb-4 flex gap-1">
+					<p>4</p>
+					<img src="https://cdn-icons-png.flaticon.com/512/6201/6201789.png" class="w-5">
+					<img src="https://cdn-icons-png.flaticon.com/512/6201/6201789.png" class="w-5">
+					<img src="https://cdn-icons-png.flaticon.com/512/6201/6201789.png" class="w-5">
+					<img src="https://cdn-icons-png.flaticon.com/512/6201/6201789.png" class="w-5">
+					<img src="https://cdn-icons-png.flaticon.com/512/118/118669.png" class="w-5">
+					<a href="#">Voir tous les avis (123)</a>
+				</div>
+				<div class="w-full mb-4 flex gap-2 text-center">
+					<a href="#">
+						<div class="bg-black rounded-full border p-2 h-3 w-3"></div>
+						<span>Noir</span>
+					</a>
+					<a href="#">
+						<div class="bg-gray-700 rounded-full border p-2 h-3 w-3"></div>
+						<span>Gris</span>
+					</a>
+				</div>
+				<div class="w-full mb-4 flex gap-2">
+					<a href="#">
+						<div class="bg-gray-200 rounded border p-2 hover:bg-gray-500">M</div>
+					</a>
+					<a href="#">
+						<div class="bg-gray-200 rounded border p-2 hover:bg-gray-500">S</div>
+					</a>
+				</div>
+				<div class="text-center mb-6">
+					<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Ajouter au panier</button>
+				</div>
+				<p class="text-gray-700 text-base">
+					Description :
+					<br>
+					{{ product.description }}
+				</p>
+				<div class="px-6 pt-4 pb-2">
+					<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-auto mb-2">#category</span>
+				</div>
+				<div>
+					<ul class="list-disc ml-5">
+						<li>Garantie fabricant</li>
+						<li>100% recyclé</li>
+						<li>Livraison standard rapide</li>
+						<li>Zebi c'est bo</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
