@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container flex justify-center">
+		<div class="grid grid-cols md:grid-cols-3">
+			{% for product in products %}
+				{% include 'item-product.html.twig' %}
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
