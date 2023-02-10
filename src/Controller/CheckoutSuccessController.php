@@ -24,13 +24,16 @@ class CheckoutSuccessController extends AbstractController
         $token = $request->get('token');
         if(!$this->isCsrfTokenValid('stripe_token',$token)){
             
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_home');
         }
         
         $user = $this->getUser();
+        if(empty($user->getCart)){
+            return $this->redirectToRoute('app_home');
+        }
         $currentCart = $user->getCart();
         $entityManager = $doctrine->getManager();
-
+        
         $userRep = $entityManager->getRepository(Product::class);
         $OrdersRep =  $entityManager->getRepository(Orders::class);
         $deliveryRep= $entityManager->getRepository(DeliveryCompany::class);
@@ -60,6 +63,9 @@ class CheckoutSuccessController extends AbstractController
               ->setDeliveryCompany($deliverycompagny)
         ;
         $OrdersRep->save($Orders,true);
+        $user->setCart([]);
+        $entityManager->flush();
+        dd($currentCart);
         return $this->render('checkout_success/index.html.twig', [
             'controller_name' => 'CheckoutSuccessController',
         ]);
