@@ -28,6 +28,11 @@ class PaymentController extends AbstractController
 
     public function getPayment(ManagerRegistry  $doctrine)
     {
+        if(!$this->getUser())
+        {
+            return $this->redirectToRoute('app_login');
+        }
+        
         Stripe::setApiKey($_ENV['STRIPE_KEY']);
 
         $user = $this->getUser();

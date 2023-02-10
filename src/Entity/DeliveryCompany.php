@@ -27,7 +27,7 @@ class DeliveryCompany
     #[ORM\Column(length: 255)]
     private ?string $Guaranteed_breakage = null;
 
-    #[ORM\OneToMany(mappedBy: 'delivery_company', targetEntity: Order::class)]
+    #[ORM\OneToMany(mappedBy: 'delivery_company', targetEntity: Orders::class)]
     private Collection $orders;
 
     public function __construct()
@@ -89,14 +89,14 @@ class DeliveryCompany
     }
 
     /**
-     * @return Collection<int, Order>
+     * @return Collection<int, Orders>
      */
     public function getOrders(): Collection
     {
         return $this->orders;
     }
 
-    public function addOrder(Order $order): self
+    public function addOrder(Orders $order): self
     {
         if (!$this->orders->contains($order)) {
             $this->orders->add($order);
@@ -106,12 +106,12 @@ class DeliveryCompany
         return $this;
     }
 
-    public function removeOrder(Order $order): self
+    public function removeOrders(Orders $orders): self
     {
-        if ($this->orders->removeElement($order)) {
+        if ($this->orders->removeElement($orders)) {
             // set the owning side to null (unless already changed)
-            if ($order->getDeliveryCompany() === $this) {
-                $order->setDeliveryCompany(null);
+            if ($orders->getDeliveryCompany() === $this) {
+                $orders->setDeliveryCompany(null);
             }
         }
 
