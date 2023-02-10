@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\User;
+use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
@@ -16,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserController extends AbstractController
 {
 
-    public function addProductToCart(Request $request,ManagerRegistry  $doctrine):Response
+    public function addProductToCart(Request $request,ManagerRegistry  $doctrine, ProductRepository $product):Response
     {
         if(!$this->getUser())
         {
@@ -24,10 +25,12 @@ class UserController extends AbstractController
         }
 
         $productId = str_replace('/products/add_to_cart/', '', $request->getPathInfo());
-
+        if(!$product->find($productId))
+        {
+            return $this->redirectToRoute('home_page');
+        }
          $user = $this->getUser();
         $currentCart = $user->getCart();
-
         $entityManager = $doctrine->getManager();
         $userRep = $entityManager->getRepository(User::class)->find(1);
 
@@ -39,8 +42,10 @@ class UserController extends AbstractController
          {
              $currentCart[$productId] = 1;
          }
+         if(!$product->find($productId)){
 
-        $userRep->setCart($currentCart);
+         }
+        $user->setCart($currentCart);
 
         $entityManager->flush();
 
