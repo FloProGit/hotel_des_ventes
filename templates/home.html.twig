@@ -3,14 +3,14 @@
 	<h1 class="border-b-2 border-black mb-6 w-1/4 text-end my-4">Nouveautés</h1>
 
 	<div id="carouselHome" class="carousel slide relative" data-bs-ride="carousel">
-		<div class="carousel-inner relative w-full overflow-hidden">
+		<div class="carousel-inner relative overflow-hidden" style="height:500px; ">
 			{% for product in products|slice(0, 3) %}
 				<div class="carousel-item
-				{% if {{ loop.first }} %}
-				active
-				{% endif %}
-				relative float-left w-full" height="150px">
-					<img src="https://picsum.photos/1280/720" class="block w-full h-80" alt="Man"/>
+						{% if loop.first %}
+						active
+						{% endif %}
+						relative float-left w-full">
+					<img src="https://picsum.photos/1920/1080" class="block" alt="Man"/>
 				</div>
 			{% endfor %}
 		</div>
