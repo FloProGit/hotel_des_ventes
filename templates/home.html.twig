@@ -6,7 +6,7 @@
 		<div class="carousel-inner relative w-full overflow-hidden">
 			{% for product in products|slice(0, 3) %}
 				<div class="carousel-item
-				{% if {{ loop.first }} %}
+				{% if loop.first  %}
 				active
 				{% endif %}
 				relative float-left w-full" height="150px">
